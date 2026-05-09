@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glass UI Buttons</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>VINAY</h2>
+        <span>TIWARI</span>
+    </div>
+
+    <div class="grid">
+        <div class="card"><button class="button purple">Purple</button></div>
+        <div class="card"><button class="button blue">Blue</button></div>
+        <div class="card"><button class="button green">Green</button></div>
+        <div class="card"><button class="button red">Red</button></div>
+        <div class="card"><button class="button orange">Orange</button></div>
+        <div class="card"><button class="button pink">Pink</button></div>
+        <div class="card"><button class="button teal">Teal</button></div>
+        <div class="card"><button class="button gold">Gold</button></div>
+        <div class="card"><button class="button cyan">Cyan</button></div>
+        <div class="card"><button class="button lime">Lime</button></div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll(".button");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function (e) {
+
+                // bubble animation
+                this.classList.add("animate");
+                setTimeout(() => {
+                    this.classList.remove("animate");
+                }, 600);
+
+                // ripple effect
+                const circle = document.createElement("span");
+                circle.classList.add("ripple");
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+
+                circle.style.width = circle.style.height = size + "px";
+                circle.style.left = (e.clientX - rect.left - size / 2) + "px";
+                circle.style.top = (e.clientY - rect.top - size / 2) + "px";
+
+                const oldRipple = this.querySelector(".ripple");
+                if (oldRipple) oldRipple.remove();
+
+                this.appendChild(circle);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

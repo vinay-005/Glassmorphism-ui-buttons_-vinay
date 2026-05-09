@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    overflow: hidden;
+}
+
+/* GLOW BLOBS */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+}
+
+body::before {
+    background: #ff6a88;
+    top: 10%;
+    left: 10%;
+}
+
+body::after {
+    background: #6dd5ed;
+    bottom: 10%;
+    right: 10%;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    width: 80%;
+    max-width: 900px;
+    z-index: 1;
+}
+
+/* GLASS CARD */
+.card {
+    position: relative;
+    padding: 30px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* SHINE BORDER */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.6), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+}
+
+/* BUTTON */
+.button {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+
+    background-size: 200% 200%;
+    transition: 0.3s;
+}
+
+/* GRADIENTS */
+.button.purple {
+    background-image: linear-gradient(45deg, #7d2ae8, #c471ed, #f64f59);
+}
+
+.button.blue {
+    background-image: linear-gradient(45deg, #2193b0, #6dd5ed);
+}
+
+.button.green {
+    background-image: linear-gradient(45deg, #11998e, #38ef7d);
+}
+
+.button.red {
+    background-image: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+
+.button.orange {
+    background-image: linear-gradient(45deg, #f7971e, #ffd200);
+}
+
+.button.pink {
+    background-image: linear-gradient(45deg, #ff6a88, #ff99ac);
+}
+
+/* NEW COLORS */
+.button.teal {
+    background-image: linear-gradient(45deg, #00c9ff, #92fe9d);
+}
+
+.button.gold {
+    background-image: linear-gradient(45deg, #f7971e, #ffd200, #fff6a9);
+}
+
+.button.cyan {
+    background-image: linear-gradient(45deg, #1fd1f9, #b621fe);
+}
+
+.button.lime {
+    background-image: linear-gradient(45deg, #a8ff78, #78ffd6);
+}
+
+/* HOVER ANIMATION */
+.button:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: scale(0.96);
+}
+
+/* BUBBLE EFFECT */
+.button::before,
+.button::after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.button.animate::before {
+    top: -70%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 20%, transparent 20%);
+    background-size: 10% 10%;
+    animation: topBubbles 0.6s forwards;
+}
+
+@keyframes topBubbles {
+    from {
+        background-position: 50% 100%;
+    }
+
+    to {
+        background-position: 50% -10%;
+        background-size: 0% 0%;
+    }
+}
+
+.button.animate::after {
+    bottom: -70%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 20%, transparent 20%);
+    background-size: 10% 10%;
+    animation: bottomBubbles 0.6s forwards;
+}
+
+@keyframes bottomBubbles {
+    from {
+        background-position: 50% 0%;
+    }
+
+    to {
+        background-position: 50% 120%;
+        background-size: 0% 0%;
+    }
+}
+
+/* RIPPLE */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.sidebar h2 {
+    font-size: 32px;
+    color: #fff;
+}
+
+.sidebar span {
+    font-size: 14px;
+    letter-spacing: 5px;
+    opacity: 0.7;
+    color: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
